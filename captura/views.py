@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 
 from django.shortcuts import render
 import re
-import urllib2
+import urllib.request as urllib2
 
 # Create your views here.
 def home(request):
