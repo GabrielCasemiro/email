@@ -4,7 +4,6 @@ from __future__ import unicode_literals
 from django.shortcuts import render
 import urllib,re
 import urllib.request
-
 # Create your views here.
 def home(request):
 	return render(request, 'index.html', {})
@@ -18,8 +17,8 @@ def capturar(request):
 			with urllib.request.urlopen(link) as url:
 				s = url.read().decode('utf-8')
 			
-			telefones = re.findall(r"\+\d{2}\s?0?\d{10}",s)
-			emails = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",s)
+			telefones = set(re.findall(r"\+\d{2}\s?0?\d{10}",s))
+			emails = set(re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",s))
 			msg = "Link Válido"
 		return render(request, 'index.html', {"link":link,"msg":msg,"emails":emails,"telefones":telefones})
 	return render(request, 'index.html')
