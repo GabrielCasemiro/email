@@ -19,5 +19,4 @@ def capturar(request):
 			emails = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",s)
 			msg = "Link Válido"
 		return render(request, 'index.html', {"link":link,"msg":msg,"emails":emails,"telefones":telefones})
-	else:
-		return render(request, 'index.html')
+	return render(request, 'index.html')
