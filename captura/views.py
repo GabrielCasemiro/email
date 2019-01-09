@@ -56,13 +56,14 @@ def capturar(request):
 				counter[0].visitas = F('visitas') + 1
 				counter[0].save(update_fields=["emails","telefones","visitas"])
 			msg = u"Emails encontados: %s. Telefones encontrados: %s" % (len(emails),len(telefones))
+			contador2 = Counter.objects.get_or_create(pk = 0)
 		return render(request, 'index.html', {"link":link,
 			"msg":msg,
 			"emails":emails,
 			"telefones":telefones,
-			"visitas":contador[0].visitas,
-			"contador_emails":contador[0].emails,
-			"contador_telefones":contador[0].telefones,
+			"visitas":contador2[0].visitas,
+			"contador_emails":contador2[0].emails,
+			"contador_telefones":contador2[0].telefones,
 			"path":path
 			})
 	else:
