@@ -6,6 +6,7 @@ import re
 import urllib.request as urllib2
 from captura.models import Counter, Report
 from django.db.models import Count, F, Value
+from django.http import HttpResponse
 
 def home(request):
 	contador = Counter.objects.get_or_create(pk = 0)
@@ -69,4 +70,5 @@ def capturar(request):
 			"contador_emails":contador[0].emails,
 			"path":path,
 			"contador_telefones":contador[0].telefones})
-		
+def sitemap(request):
+	return HttpResponse(open('sitemap.xml').read())
