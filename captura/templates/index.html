@@ -4,124 +4,173 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<title>Captura de email</title>
+	<meta name="description" content="É uma ferramenta que captura E-mails e Telefones de Sites Gratuitamente.">
+	<meta name="author" content="Captura de E-mails e Telefones Gratuitamente">
+	<link rel="shortcut icon" type="image/x-icon" href="http://www.iconarchive.com/download/i58748/dakirby309/windows-8-metro/Other-Mail-Metro.ico" />
+	<link rel="icon" href="http://www.iconarchive.com/download/i58748/dakirby309/windows-8-metro/Other-Mail-Metro.ico">
+	<title>Captura de E-mails e Telefones Gratuitamente</title>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132040568-1"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag(){dataLayer.push(arguments);}
+		gtag('js', new Date());
+
+		gtag('config', 'UA-132040568-1');
+	</script>
 
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300" rel="stylesheet">
+	<style type="text/css">
+	body{
+		font-family: 'Open Sans', sans-serif !important;
+		font-weight: 300;
+		font-size: 18px;
+	}
+	.titulo{
+		font-family: 'Josefin Sans', sans-serif !important;
+		font-size: 2em;
+	}
+	.open {
+		font-family: 'Open Sans', sans-serif !important;
+		font-size: 18px;
+		font-weight: 300;
+		margin: 0 0 40px;
+		line-height: 25px;
+	}
+</style>
 </head>
 <body>
-	<!DOCTYPE html>
-	<html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta name="description" content="">
-		<meta name="author" content="">
-		<link rel="icon" href="../../../../favicon.ico">
-		
-		<title>Captura de E-mails</title>
-		
-		<!-- Bootstrap core CSS -->
-		<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet">
-		
-		<!-- Custom styles for this template -->
-		<link href="navbar-top.css" rel="stylesheet">
-	</head>
+	<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+		<a class="navbar-brand text-center" href="#">Capturar E-mails <br> e Telefones Grátis</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<div class="collapse navbar-collapse" id="navbarCollapse">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link active btn bg-white text-dark" href="/">Home <span class="sr-only">(current)</span></a>
+				</li>
 
-	<body>
-		<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-			<a class="navbar-brand" href="#">Captura de E-mails</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarCollapse">
-				<ul class="navbar-nav mr-auto">
+			</ul>
 
-				</ul>
-
-			</div>
-		</nav>
-		
-
-		
-		
-				<!-- Bootstrap core JavaScript
-					================================================== -->
-					<!-- Placed at the end of the document so the pages load faster -->
-					<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-					<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-					<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-
-					<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-					<script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>
-				</body>
-				</html>
-				<div class="container mt-5">
+		</div>
+	</nav>
 
 
-					<form method="POST" action="/capturar/" >{% csrf_token %}
+	<div class="container mt-5 mb-5">
+		<div class="row mb-5">
+			<div class="col-12 col-md-4 text-center mt-4">
+				<h1>{{visitas}} Visitas</h3>
+				</div>
+				<div class="col-12 col-md-4 text-center mt-4">
+					<h1>{{contador_emails}} E-mails<br> encontrados</h3>
+					</div>
+					<div class="col-12 col-md-4 text-center mt-4 ">
+						<h1>{{contador_telefones}} Telefones<br>encontrados </h3>
+						</div>
+					</div>
+				</div>
 
-						<div class="form-group row">
-							<label for="link" class="col-sm-2 form-control-label">Link</label>
-							<div class="col-sm-10">
+				<br>
+				<div class="container-fluid bg-dark text-white">
+					<div class="container">
+
+						<form method="POST" action="/capturar/" class="p-5 mb-5">{% csrf_token %}
+							<p class="titulo text-center">Capture E-mails e Telefones de Sites Gratuitamente</p>
+							<lead>Coloque o endereço do site abaixo e capture todos E-mails e Telefones presentes na página Web. É simples e fácil de usar. Use quantas vezes quiser ;)
+								<br><br>
+								<label for="link" class="form-control-label titulo">Link</label>
+
 								<input type="text" class="form-control" id="link" name="link"placeholder="https://google.com/" value="{{link}}">
-							</div>
-						</div>
 
 
-						<div class="form-group row">
-							<div class="col-sm-offset-2 col-sm-10">
-								<button type="submit" class="btn btn-secondary">Capturar E-mails</button>
+
+								<div class="form-group row mt-5">
+									<div class="col-sm-off set-2 col-sm-10 ">
+										<button type="submit" onclick="showloader()" class="btn btn-outline-success my-2 my-sm-0 pl-3 pr-3 titulo">Capturar</button>
+										<span id="loader" style="display: none;">
+											<img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" width="50px" height="50px">
+										</span>
+									</div>
+
+								</div>
+							</form>
+						</div>
+					</div>
+					<div class="container">
+						{%if msg%}
+						<div class="row mt-4 mb-4">
+							<div class="col-12">
+								{% if msg %}
+								<div class="alert alert-info" role="alert">
+									{{msg}}.
+								</div>
+								{%endif%}
+							</div>
+							<div class="col-12 col-md-6">
+								<div class="card text-center">
+									<div class="card-body">
+										<h4 class="card-title titulo">Telefones encontrados</h4>
+										{%if telefones%}
+										{%for telefone in telefones%}
+										<p>{{telefone}}</p>
+										{%endfor%}
+
+										{%else%}
+										<p class="card-text ">Nenhum telefone encontrado.</p>
+										{%endif%}
+
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-md-6">
+								<div class="card text-center">
+									<div class="card-body">
+										<h4 class="card-title titulo">Emails encontrados</h4>
+										{%if emails%}
+										{%for email in emails%}
+										<p>{{email}}</p>
+										{%endfor%}
+										{%else%}
+										<p class="card-text ">Nenhum E-mail encontrado.</p>
+										{%endif%}
+
+									</div>
+								</div>
 							</div>
 						</div>
-					</form>
+						{%endif%}
+					</div>
 					{%if msg%}
-					<div class="row mt-4">
-						<div class="col-12">
-							{% if msg %}
-							<div class="alert alert-info" role="alert">
-								{{msg}}
-							</div>
-							{%endif%}
-						</div>
-						<div class="col-6">
-							<div class="card text-center">
-								<div class="card-body">
-									<h4 class="card-title">Telefones encontrados</h4>
-									{%if telefones%}
-									{%for telefone in telefones%}
-									<p>{{telefone}}</p>
-									{%endfor%}
-									
-									{%else%}
-									<p class="card-text">Nenhum telefone encontrado.</p>
-									{%endif%}
-
-								</div>
-							</div>
-						</div>
-						<div class="col-6">
-							<div class="card text-center">
-								<div class="card-body">
-									<h4 class="card-title">Emails encontrados</h4>
-									{%if emails%}
-									{%for email in emails%}
-									<p>{{email}}</p>
-									{%endfor%}
-									{%else%}
-									<p class="card-text">Nenhum E-mail encontrado.</p>
-									{%endif%}
-
-								</div>
+					<div class="container-fluid">
+						<div class="row bg-dark text-white">
+							<div class="col-12 p-3 text-center">
+								© GET EMAIL. TODOS OS DIREITOS RESERVADOS.
 							</div>
 						</div>
 					</div>
 					{%endif%}
-				</div>
 
-				<!-- Optional JavaScript -->
-				<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-				<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-				<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>	</body>
+					<!-- Optional JavaScript -->
+					<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+					<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+					<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+					<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+					<script type="text/javascript">
+						(function(){
+							$("#loader").hide();
+						});
+						function showloader(){
+							$("#loader").show();
+						}
+						{% if path%}
+						var y = $(window).scrollTop(); 
+						$(window).scrollTop(y+850);
+						{%endif%}
+					</script>
+				</body>
 				</html>
