@@ -11,6 +11,8 @@ from django.http import HttpResponse
 def home(request):
 	contador = Counter.objects.get_or_create(pk = 0)
 	return render(request, 'index.html', {"visitas":contador[0].visitas,"contador_emails":contador[0].emails,"contador_telefones":contador[0].telefones})
+def consultar(request):
+	
 def capturar(request):
 	emails = []
 	telefones = []
@@ -25,6 +27,7 @@ def capturar(request):
        'Accept-Language': 'en-US,en;q=0.8',
        'Connection': 'keep-alive'}
 		link = request.POST.get("link", '')
+		contador2 = Counter.objects.get_or_create(pk = 0)
 		if link:
 			try:
 				req = urllib2.Request(link, headers=hdr)
@@ -43,6 +46,7 @@ def capturar(request):
 			
 			telefones = set(re.findall(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]',s))
 			emails = set(re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",s))
+
 			if telefones or emails:
 				report = Report.objects.create()
 				report.emails = ''.join(str(e)+", " for e in emails)
