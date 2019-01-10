@@ -19,7 +19,6 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home),
-    url(r'^capturar/$', views.capturar),
     url(r'^sitemap/$', views.sitemap),
     url(r'^consultar/$', views.consultar),
 ]

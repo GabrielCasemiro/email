@@ -4,7 +4,7 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="É uma ferramenta que captura E-mails e Telefones de Sites Gratuitamente.">
+	<meta name="description" content="É uma ferramenta que encontra E-mails e Telefones em páginas Web Gratuitamente. É simples, fácil e grátis. Utilize quantas vezes quiser.">
 	<meta name="author" content="Captura de E-mails e Telefones Gratuitamente">
 	<link rel="shortcut icon" type="image/x-icon" href="http://www.iconarchive.com/download/i58748/dakirby309/windows-8-metro/Other-Mail-Metro.ico" />
 	<link rel="icon" href="http://www.iconarchive.com/download/i58748/dakirby309/windows-8-metro/Other-Mail-Metro.ico">
@@ -43,6 +43,9 @@
 	}
 	.sombra{
 		box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+	}
+	.negrito{
+		font-weight: 1000;
 	}
 </style>
 </head>
@@ -85,19 +88,30 @@
 							<form method="POST" action="/capturar/" class="p-3 mb-5">{% csrf_token %}
 								<label for="link" class="form-control-label titulo">Link</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" name="link"placeholder="https://google.com" aria-label="https://google.com" aria-describedby="basic-addon2" value="{{link}}">
+									<input type="text" class="form-control" name="link" placeholder="https://google.com" aria-label="https://google.com" aria-describedby="basic-addon2" id="link" value="{{link}}">
 									<div class="input-group-append">
-										<button class="btn btn-outline-primary" type="submit" onclick="showloader()">Procurar</button>
-										<span id="loader" style="display: none;">
-											<img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" width="50px" height="50px">
-										</span>
+										<button class="btn btn-outline-primary" type="button" onclick="procurar()">Procurar</button>
+
 									</div>
 
 								</div>
-								<p class="text-center bold"><span id="numero">40</span> E-mails encontrados</p>
-								<ul class="list-group" id="lista">
-									
-								</ul>
+																	<center>										
+										<span id="loader" style="display: none;">
+											<img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" width="50px" height="50px">
+										</span>
+									</center>
+								<div class="alert alert-danger" role="alert" id="aviso" style="display: none;">
+									Link inválido. Não se esqueça do http://.
+								</div>
+								<span id="containerGeral" style="display: none;">
+									<p class="text-center negrito"><span id="emails_encontrados" >0</span> E-mail(s) encontrado(s)</p>
+									<ul class="list-group w-100 d-block" id="lista_email" >	
+									</ul>
+									<br>
+									<p class="text-center negrito"><span id="telefones_encontrados" >0</span> Telefone(s) encontrado(s)</p>
+									<ul class="list-group w-100 d-block" id="lista_telefones" >	
+									</ul>
+								</span>
 							</form>
 
 						</div>
@@ -105,13 +119,13 @@
 
 					<div class="row mb-5">
 						<div class="col-12 col-md-4 text-center mt-4">
-							<p>{{visitas}} Visitas</p>
+							<p><span id="visitas">{{visitas}}</span> Visitas</p>
 						</div>
 						<div class="col-12 col-md-4 text-center mt-4">
-							<p>{{contador_emails}} E-mails<br> encontrados</p>
+							<p><span id="emails">{{contador_emails}}</span> E-mails<br> encontrados</p>
 						</div>
 						<div class="col-12 col-md-4 text-center mt-4 ">
-							<p>{{contador_telefones}} Telefones<br>encontrados </p>
+							<p><span id="telefones">{{contador_telefones}}</span> Telefones<br>encontrados </p>
 						</div>
 					</div>
 				</div>
@@ -121,63 +135,11 @@
 			</div>
 
 		</div>
-		<div class="container">
-			{%if msg%}
-			<div class="row mt-4 mb-4">
-				<div class="col-12">
-					{% if msg %}
-					<div class="alert alert-info" role="alert">
-						{{msg}}.
-					</div>
-					{%endif%}
-				</div>
-				<div class="col-12 col-md-6">
-					<div class="card text-center">
-						<div class="card-body">
-							<h4 class="card-title titulo">Telefones encontrados</h4>
-							{%if telefones%}
-							{%for telefone in telefones%}
-							<p>{{telefone}}</p>
-							{%endfor%}
-
-							{%else%}
-							<p class="card-text ">Nenhum telefone encontrado.</p>
-							{%endif%}
-
-						</div>
-					</div>
-				</div>
-				<div class="col-12 col-md-6">
-					<div class="card text-center">
-						<div class="card-body">
-							<h4 class="card-title titulo">Emails encontrados</h4>
-							{%if emails%}
-							{%for email in emails%}
-							<p>{{email}}</p>
-							{%endfor%}
-							{%else%}
-							<p class="card-text ">Nenhum E-mail encontrado.</p>
-							{%endif%}
-
-						</div>
-					</div>
-				</div>
-			</div>
-			{%endif%}
-		</div>
-		{%if msg%}
-		<div class="container-fluid">
-			<div class="row bg-dark text-white">
-				<div class="col-12 p-3 text-center">
-					© Email Finder.
-				</div>
-			</div>
-		</div>
-		{%endif%}
+		
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
@@ -198,30 +160,51 @@
 			}
 
 			function procurar(){
-				showloader()
+				$("#containerGeral").hide("slow");
+				showloader();
+				var link = $("#link").val();
 				var csrftoken = getCookie('csrftoken');
 				$.ajax({
 					method: "POST",
 					url: "/consultar/",
 					data:{ 
 						csrfmiddlewaretoken: csrftoken,
+						link: link
 					},
 					dataType:"JSON",
 
 					success: function(data) {
+						if(data.fail == true){
+							$("#aviso").show("slow");
+							hideloader();
+						}else{
+							$("#aviso").hide("slow");
+							$("#lista_email").empty();
+							$("#lista_telefones").empty();
+							$.each(data.emails, function(key, val) { 
+								$("#lista_email").append(val); 
+							})
+							$.each(data.telefones, function(key, val) { 
+								$("#lista_telefones").append(val); 
+							})
+							$("#emails_encontrados").html(data.emails_encontrados);
+							$("#telefones_encontrados").html(data.telefones_encontrados);
+							hideloader();
+							$("#visitas").html(data.visitas);
+							$("#emails").html(data.contador_emails);
+							$("#telefones").html(data.contador_telefones);
+							$("#containerGeral").show("slow");
+						}
+
 					}
 				})
 			}
-			(function(){
+			function hideloader(){
 				$("#loader").hide();
-			});
+			}
 			function showloader(){
 				$("#loader").show();
 			}
-			{% if path%}
-			var y = $(window).scrollTop(); 
-			$(window).scrollTop(y+450);
-			{%endif%}
 		</script>
 	</body>
 	</html>
