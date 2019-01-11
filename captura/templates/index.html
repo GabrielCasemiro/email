@@ -95,7 +95,7 @@
 							<form method="POST" action="/capturar/" class="p-3 mb-5">{% csrf_token %}
 								<label for="link" class="form-control-label titulo">Link</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" name="link" placeholder="https://google.com" aria-label="https://google.com" aria-describedby="basic-addon2" id="link" value="{{link}} required">
+									<input type="text" class="form-control" name="link" placeholder="https://google.com" aria-label="https://google.com" aria-describedby="basic-addon2" id="link" value="{{link}}" required>
 									<div class="input-group-append">
 										<button class="btn btn-outline-primary" type="button" onclick="procurar()">Procurar</button>
 
@@ -239,6 +239,7 @@
 				$("#containerGeral").hide("slow");
 				showloader();
 				var link = $("#link").val();
+				if(link != ""){
 				var csrftoken = getCookie('csrftoken');
 				$.ajax({
 					method: "POST",
@@ -274,6 +275,9 @@
 
 					}
 				})
+			}else{
+				$("#aviso").hide("slow");
+			}
 			}
 			function enviarEmail(){
 				showloader2();
