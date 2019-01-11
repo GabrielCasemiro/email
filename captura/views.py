@@ -28,7 +28,7 @@ def consultar(request):
        'Connection': 'keep-alive'}
 
 	link = request.POST.get("link", '')
-	contador2 = Counter.objects.get_or_create(pk = 0)
+	contador = Counter.objects.get_or_create(pk = 0)
 	lista_emails = []
 	lista_telefones = []
 	if link:
@@ -39,9 +39,12 @@ def consultar(request):
 			fail = True
 			return JsonResponse({"fail":fail})
 		s = page.read().decode('utf-8')
-		telefones = set(re.findall(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]',s))
-		emails = set(re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",s))
-
+		if link.startswith("http://www.brazil4export.com"):
+			telefones = set(re.findall(r'[\+\(]?[1-9][0-9 .\-\(\)]{8,}[0-9]',s))
+		else:
+			telefones = set(re.findall(r'\(\d{2}\) \w{4}-\w{4}',s))
+			
+		emails = re.findall(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}",s)
 		if telefones or emails:
 			for email in emails:
 				lista_emails.append("<li class='list-group-item'>" + email + "</li>")
