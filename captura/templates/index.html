@@ -4,11 +4,13 @@
 	<!-- Required meta tags -->
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="É uma ferramenta que encontra E-mails e Telefones em páginas Web Gratuitamente. É simples, fácil e grátis. Utilize quantas vezes quiser.">
+	<meta name="description" content="E-mail Finder é uma ferramenta que encontra E-mails e Telefones em páginas Web Gratuitamente. É simples, fácil e grátis. Utilize quantas vezes quiser.">
 	<meta name="author" content="Captura de E-mails e Telefones Gratuitamente">
 	<link rel="shortcut icon" type="image/x-icon" href="http://www.iconarchive.com/download/i58748/dakirby309/windows-8-metro/Other-Mail-Metro.ico" />
 	<link rel="icon" href="http://www.iconarchive.com/download/i58748/dakirby309/windows-8-metro/Other-Mail-Metro.ico">
-	<title>Captura de E-mails e Telefones Gratuitamente</title>
+	<title>E-mail Finder: Captura de E-mails e Telefones Gratuitamente</title>
+
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 	<!-- Global site tag (gtag.js) - Google Analytics -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-132040568-1"></script>
 	<script>
@@ -46,6 +48,7 @@
 	}
 	.negrito{
 		font-weight: 1000;
+		font-size: 22px;
 	}
 </style>
 </head>
@@ -70,7 +73,11 @@
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item" href="/">Encontrar E-mails e Telefones</a>
 						</li>
+						<li class="nav-item ">
+							<a class="nav-link" href="#contato">Contato <span class="sr-only">(current)</span></a>
+						</li>
 					</ul>
+
 				</div>
 			</div>
 
@@ -88,18 +95,18 @@
 							<form method="POST" action="/capturar/" class="p-3 mb-5">{% csrf_token %}
 								<label for="link" class="form-control-label titulo">Link</label>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" name="link" placeholder="https://google.com" aria-label="https://google.com" aria-describedby="basic-addon2" id="link" value="{{link}}">
+									<input type="text" class="form-control" name="link" placeholder="https://google.com" aria-label="https://google.com" aria-describedby="basic-addon2" id="link" value="{{link}} required">
 									<div class="input-group-append">
 										<button class="btn btn-outline-primary" type="button" onclick="procurar()">Procurar</button>
 
 									</div>
 
 								</div>
-																	<center>										
-										<span id="loader" style="display: none;">
-											<img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" width="50px" height="50px">
-										</span>
-									</center>
+								<center>										
+									<span id="loader" style="display: none;">
+										<img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" width="50px" height="50px">
+									</span>
+								</center>
 								<div class="alert alert-danger" role="alert" id="aviso" style="display: none;">
 									Link inválido. Não se esqueça do http://.
 								</div>
@@ -117,20 +124,89 @@
 						</div>
 					</div>
 
-					<div class="row mb-5">
-						<div class="col-12 col-md-4 text-center mt-4">
+					<div class="row mb-2 mt-5">
+						<div class="col-12 col-md-4  text-center text-md-center  mt-4">
 							<p><span id="visitas">{{visitas}}</span> Visitas</p>
 						</div>
-						<div class="col-12 col-md-4 text-center mt-4">
+						<div class="col-12 col-md-4  text-center text-md-center  mt-4">
 							<p><span id="emails">{{contador_emails}}</span> E-mails<br> encontrados</p>
 						</div>
-						<div class="col-12 col-md-4 text-center mt-4 ">
+						<div class="col-12 col-md-4 text-center text-md-center mt-4 ">
 							<p><span id="telefones">{{contador_telefones}}</span> Telefones<br>encontrados </p>
 						</div>
 					</div>
 				</div>
-				<div class="col-12 col-md-2">
 
+			</div></div>
+				
+				<div class="container-fluid bg-white" id="contato">
+					<hr>
+					<div class="row justify-content-center mt-5	">
+						<div class="col-12 col-md-7  pb-5">
+
+
+							<!--Form with header-->
+
+							<form>
+								<div class="card sombra rounded-0" style="background-color: #fafafa !important;">
+									<div class="card-header p-0">
+										<div class="bg-white text-dark text-center py-2">
+											<h3><i class="fa fa-envelope"></i> Contato</h3>
+											<p class="m-0">Encontrou um bug? Tem uma sugestão? Entre contato com nossa equipe.</p>
+										</div>
+									</div>
+									<div class="card-body p-3">
+
+										<!--Body-->
+										<div class="form-group">
+											<div class="input-group mb-2">
+												<div class="input-group-prepend">
+													<div class="input-group-text"><i class="fa fa-user text-primary"></i></div>
+												</div>
+												<input type="text" class="form-control" id="nome_input" name="nome" placeholder="Nome" required>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="input-group mb-2">
+												<div class="input-group-prepend">
+													<div class="input-group-text"><i class="fa fa-envelope text-primary"></i></div>
+												</div>
+												<input type="email" class="form-control" id="email_input" name="email" placeholder="exemplo@gmail.com" required>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div class="input-group mb-2">
+												<div class="input-group-prepend">
+													<div class="input-group-text"><i class="fa fa-comment text-primary"></i></div>
+												</div>
+												<textarea class="form-control" name="mensagem" id="mensagem_input" placeholder="Mensagem" required></textarea>
+											</div>
+										</div>
+
+										<div class="text-center">
+											<button type="button" onclick="enviarEmail()" class="btn btn-outline-primary btn-block rounded-0 py-2">Enviar</button>
+										</div>
+										<span id="loader2" style="display: none;">
+											<center>
+											<img src="https://loading.io/spinners/dual-ring/lg.dual-ring-loader.gif" width="50px" height="50px">
+											</center>
+										</span>
+										<div class="alert alert-danger mt-2" role="alert" id="error" style="display: none;">
+											Ocorreu um problema ao enviar o e-mail. Tente novamente mais tarde.
+										</div>
+										<div class="alert alert-primary mt-2" role="alert" id="sucess" style="display: none;">
+											E-mail enviado com sucesso. Obrigado por entrar em contato.
+										</div>
+									</div>
+
+								</div>
+							</form>
+							<!--Form with header-->
+
+
+						</div>
+					</div>
 				</div>
 			</div>
 
@@ -199,11 +275,47 @@
 					}
 				})
 			}
+			function enviarEmail(){
+				showloader2();
+				$("#sucess").hide("slow");
+				$("#error").hide("slow");
+				var nome = $("#nome_input").val();
+				var email = $("#email_input").val();
+				var mensagem = $("#mensagem_input").val();
+				var csrftoken = getCookie('csrftoken');
+				$.ajax({
+					method: "POST",
+					url: "/enviar_email/",
+					data:{ 
+						csrfmiddlewaretoken: csrftoken,
+						nome: nome,
+						email: email,
+						mensagem:mensagem
+					},
+					dataType:"JSON",
+
+					success: function(data) {
+						hideloader2();
+						if(data.status == true){
+							$("#sucess").show("slow");
+						}else{
+							$("#error").show("slow");
+						}
+
+					}
+				})
+			}
 			function hideloader(){
 				$("#loader").hide();
 			}
 			function showloader(){
 				$("#loader").show();
+			}
+			function hideloader2(){
+				$("#loader2").hide();
+			}
+			function showloader2(){
+				$("#loader2").show();
 			}
 		</script>
 	</body>

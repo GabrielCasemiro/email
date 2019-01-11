@@ -8,6 +8,10 @@ from captura.models import Counter, Report
 from django.db.models import Count, F, Value
 from django.http import HttpResponse
 from django.http.response import JsonResponse
+import django
+from django.conf import settings
+from django.core.mail import send_mail
+
 
 def home(request):
 	contador = Counter.objects.get_or_create(pk = 0)
@@ -65,3 +69,19 @@ def consultar(request):
 
 def sitemap(request):
 	return HttpResponse(open('sitemap.xml').read())
+
+def sendemail(request):
+	if request.method == "POST":
+		nome = request.POST.get("nome", '')
+		corpo = request.POST.get("mensagem", '')
+		email = request.POST.get("email", '')
+		mensagem_final = "Contato feito por: %s. \nEmail: %s.\nMensagem: %s" % (nome,email,corpo)
+		sucess = False
+		try:
+			send_mail('Contato via Email Finder', mensagem_final, settings.EMAIL_HOST_USER,['gabrielcasemiro68@gmail.com'], fail_silently=False)
+			sucess = True
+		except:
+			pass
+		return JsonResponse({"status":sucess});
+	else:
+		return redirect ("/")
